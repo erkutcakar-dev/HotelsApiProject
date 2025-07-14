@@ -2,27 +2,75 @@
 @{
     ViewData["Title"] = "HotelList";
     Layout = "~/Views/Shared/_HotelLayout.cshtml";
+    var highResPhotos = ViewBag.HighResPhotos as Dictionary<int, string>;
+    string FormatDate(string date)
+    {
+        if (DateTime.TryParse(date, out var dt))
+            return dt.ToString("dd MMMM yyyy");
+        return date;
+    }
 }
 
 <section class="rooms-area section-padding-100-0">
     <div class="container">
-        <div class="row">
-            @foreach (var hotel in Model)
-            {
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-rooms-area">
-                        <div class="bg-thumbnail bg-img" style="background-image: url('@(hotel.photoUrls?.FirstOrDefault() ?? "~/img/bg-img/1.jpg")');"></div>
-                        <p class="price-from">From @(hotel.priceBreakdown?.grossPrice?.amountRounded ?? "N/A") @(hotel.currency)</p>
-                        <div class="rooms-text">
-                            <div class="line"></div>
-                            <h4>@hotel.name</h4>
-                            <p>@hotel.reviewScoreWord (@hotel.reviewScore) - @hotel.reviewCount Reviews</p>
-                        </div>
-                        <a href="@Url.Action("Detail", "Hotel", new { hotelId = hotel.id, checkinDate = ViewBag.CheckinDate, checkoutDate = ViewBag.CheckoutDate })" class="book-room-btn btn palatin-btn">Details</a>
-                    </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-6">
+                <div class="section-heading text-center mb-4">
+                    <div class="line"></div>
+                    <h2>Otel Sonuçları</h2>
+                    <p>Arama kriterlerinize uygun oteller aşağıda listelenmiştir.</p>
                 </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            @if (!Model.Any())
+            {
+                <div class="col-12 text-center">
+                    <p class="alert alert-warning">Sonuç bulunamadı. Lütfen kriterlerinizi değiştirin.</p>
+                </div>
+            }
+            else
+            {
+                foreach (var hotel in Model)
+                {
+                    var photoUrl = highResPhotos != null && highResPhotos.ContainsKey(hotel.id) && !string.IsNullOrEmpty(highResPhotos[hotel.id])
+                    ? highResPhotos[hotel.id]
+                    : "/palatin-gh-pages/img/bg-img/1.jpg";
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="single-rooms-area wow fadeInUp" data-wow-delay="100ms">
+                            <!-- Thumbnail -->
+                            <div class="bg-thumbnail bg-img" style="background-image: url('@photoUrl'); height: 250px; background-size: cover; background-position: center;"></div>
+                            <!-- Price -->
+                            <p class="price-from">Gecelik @(hotel.priceBreakdown?.grossPrice?.amountRounded ?? "N/A") @(hotel.currency)</p>
+                            <!-- Rooms Text -->
+                            <div class="rooms-text">
+                                <div class="line"></div>
+                                <h4>@hotel.name</h4>
+                                <p>
+                                    <strong>Tarih:</strong> @FormatDate(ViewBag.CheckinDate as string) - @FormatDate(ViewBag.CheckoutDate as string)<br />
+                                    <strong>Yıldız:</strong> @(hotel.propertyClass > 0 ? hotel.propertyClass.ToString() : "Standart")<br />
+                                    <strong>Yorum:</strong> @(hotel.reviewScoreWord ?? "-") - @hotel.reviewCount yorum
+                                </p>
+                            </div>
+                            <!-- Book Room -->
+                            <a href="#" class="book-room-btn btn palatin-btn">İncele</a>
+                        </div>
+                    </div>
+                }
             }
         </div>
     </div>
 </section>
+<style>
+    .single-rooms-area.card:hover img {
+        filter: brightness(1) saturate(1.1);
+        transition: filter 0.3s;
+    }
 
+    .single-rooms-area.card:hover {
+        box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+        transform: translateY(-4px) scale(1.02);
+        transition: box-shadow 0.3s, transform 0.3s;
+    }
+</style>

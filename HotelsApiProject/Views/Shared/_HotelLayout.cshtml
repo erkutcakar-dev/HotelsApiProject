@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 
 @await Component.InvokeAsync("_HeaderComponent")
 
@@ -11,12 +11,8 @@
     @await Component.InvokeAsync("_SliderComponent")
    
 	@await Component.InvokeAsync("_BookAreaComponent")
-    @RenderBody()
+    @RenderBody() 
 
-    @await Component.InvokeAsync("_RoomAreaComponent")
- 
-	@await Component.InvokeAsync("_ContactAreaComponent")
-   
 	@await Component.InvokeAsync("_FooterComponent")
     @await Component.InvokeAsync("_ScriptsComponent")
 

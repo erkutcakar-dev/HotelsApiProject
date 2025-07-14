@@ -6,16 +6,66 @@
 
 <section class="single-rooms-area section-padding-100">
     <div class="container">
-        <div class="row">
-            <div class="col-12 col-lg-8">
-                <div class="single-room-content">
-                    <div class="room-title">
-                        <h2>@Model.hotel_name</h2>
-                        <p>@Model.city - @Model.address</p>
-                        <p><strong>Price:</strong> @(Model.composite_price_breakdown?.gross_amount?.amount_rounded) @(Model.composite_price_breakdown?.gross_amount?.currency)</p>
-                    </div>                 
-
-                    <p class="mt-4">@Model.rooms?._1070287101?.description</p>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <div class="section-heading text-center mb-4">
+                    <div class="line"></div>
+                    <h2>@Model.hotel_name</h2>
+                    <p>@Model.city - @Model.address</p>
+                </div>
+                <div class="card shadow-sm p-4 mb-4">
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <strong>Fiyat:</strong> @(Model.composite_price_breakdown?.gross_amount?.amount_rounded) @(Model.composite_price_breakdown?.gross_amount?.currency)
+                            <span class="ml-3"><strong>Yorum:</strong> @Model.breakfast_review_score?.review_score_word (@Model.breakfast_review_score?.review_score) - @Model.breakfast_review_score?.review_count Yorum</span>
+                        </div>
+                    </div>
+                    <!-- Photo Gallery -->
+                    <div class="room-gallery mb-4">
+                        <div class="row">
+                            @if (ViewBag.Photos != null)
+                            {
+                                foreach (var photoArr in (object[][])ViewBag.Photos)
+                                {
+                                    if (photoArr.Length > 2 && photoArr[2] != null)
+                                    {
+                                        <div class="col-6 col-md-4 col-lg-3 mb-2">
+                                            <img src="@photoArr[2]" class="img-fluid rounded" alt="Hotel Photo" />
+                                        </div>
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <h5>Açıklama</h5>
+                        <p>@Model.rooms?._1070287101?.description</p>
+                    </div>
+                    <div class="mb-4">
+                        <h5>Olanaklar</h5>
+                        <ul class="list-unstyled row">
+                            @if (Model.facilities_block?.facilities != null)
+                            {
+                                foreach (var fac in Model.facilities_block.facilities)
+                                {
+                                    <li class="col-6 col-md-4">@fac.name</li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                    <div class="mb-4">
+                        <h5>Oda Bilgisi</h5>
+                        @if (Model.rooms?._1070287101 != null)
+                        {
+                            <ul>
+                                <li>Banyo Sayısı: @Model.rooms._1070287101.private_bathroom_count</li>
+                                <li>Oda Açıklaması: @Model.rooms._1070287101.description</li>
+                            </ul>
+                        }
+                    </div>
+                    <div class="text-center">
+                        <a href="javascript:history.back()" class="btn btn-outline-secondary">Sonuçlara Dön</a>
+                    </div>
                 </div>
             </div>
         </div>

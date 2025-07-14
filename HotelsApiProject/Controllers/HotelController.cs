@@ -18,12 +18,39 @@ namespace HotelsApiProject.Controllers
         public async Task<IActionResult> Result(string query, string checkinDate, string checkoutDate, int adults, int children)
         {
             var locationId = await GetLocationId(query);
-            if (locationId == null)
-                return View("Error", "Konum bulunamadı");
+            if (string.IsNullOrEmpty(locationId) || locationId == "0")
+                return View("Error", "Konum bulunamadı veya geçersiz.");
 
-            var searchResult = await GetHotelSearchResults(locationId, checkinDate, checkoutDate, adults, children);
-            ViewBag.CheckinDate = checkinDate;
-            ViewBag.CheckoutDate = checkoutDate;
+            DateTime checkin, checkout;
+            if (!DateTime.TryParse(checkinDate, out checkin) || !DateTime.TryParse(checkoutDate, out checkout))
+                return View("Error", "Tarih formatı hatalı.");
+
+            string apiCheckin = checkin.ToString("yyyy-MM-dd");
+            string apiCheckout = checkout.ToString("yyyy-MM-dd");
+
+            var searchResult = await GetHotelSearchResults(locationId, apiCheckin, apiCheckout, adults, children);
+            ViewBag.CheckinDate = apiCheckin;
+            ViewBag.CheckoutDate = apiCheckout;
+
+            // Her otel için yüksek çözünürlüklü fotoğrafı url_prefix ile birleştirerek seç
+            var highResPhotos = new Dictionary<int, string>();
+            string urlPrefix = null;
+            if (searchResult?.data != null && searchResult.data.Length > 0)
+            {
+                // url_prefix'i ilk otelden al (tüm otellerde aynı olur)
+                urlPrefix = searchResult.data[0].photoUrls != null && searchResult.data[0].photoUrls.Length > 0 && searchResult.data[0].photoUrls[0].StartsWith("http")
+                    ? "" : "/palatin-gh-pages/"; // Eğer zaten tam url ise prefix ekleme
+            }
+            foreach (var hotel in searchResult.data)
+            {
+                string highResPhoto = null;
+                if (hotel.photoUrls != null && hotel.photoUrls.Length > 31 && !string.IsNullOrEmpty(hotel.photoUrls[31]))
+                    highResPhoto = urlPrefix + hotel.photoUrls[31];
+                else if (hotel.photoUrls != null && hotel.photoUrls.Length > 0)
+                    highResPhoto = urlPrefix + hotel.photoUrls[0];
+                highResPhotos[hotel.id] = highResPhoto;
+            }
+            ViewBag.HighResPhotos = highResPhotos;
 
             return View("HotelList", searchResult.data); // Model: HotelSearchViewModel.Datum[]
         }
@@ -31,6 +58,8 @@ namespace HotelsApiProject.Controllers
         public async Task<IActionResult> Detail(int hotelId, string checkinDate, string checkoutDate)
         {
             var detail = await GetHotelDetail(hotelId, checkinDate, checkoutDate);
+            var photos = await GetHotelPhotos(hotelId);
+            ViewBag.Photos = photos?.data?.data?._10702871; // Corrected property access
             return View("HotelDetail", detail.data); // Model: HotelDetailViewModel.Data
         }
 
