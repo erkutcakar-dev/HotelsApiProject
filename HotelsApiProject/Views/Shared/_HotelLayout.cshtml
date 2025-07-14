@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+@await Component.InvokeAsync("_HeaderComponent")
+
+<body>
+    @await Component.InvokeAsync("_PreloaderComponent")
+
+    @await Component.InvokeAsync("_NavbarComponent")
+
+    @await Component.InvokeAsync("_SliderComponent")
+   
+	@await Component.InvokeAsync("_BookAreaComponent")
+    @RenderBody()
+
+    @await Component.InvokeAsync("_RoomAreaComponent")
+ 
+	@await Component.InvokeAsync("_ContactAreaComponent")
+   
+	@await Component.InvokeAsync("_FooterComponent")
+    @await Component.InvokeAsync("_ScriptsComponent")
+
+   
+</body>
+
+</html>
+
+

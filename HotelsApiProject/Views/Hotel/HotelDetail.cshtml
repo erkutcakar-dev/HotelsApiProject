@@ -1,0 +1,24 @@
+﻿@model HotelsApiProject.Models.HotelDetailViewModel.Data
+@{
+    ViewData["Title"] = "HotelDetail";
+    Layout = "~/Views/Shared/_HotelLayout.cshtml";
+}
+
+<section class="single-rooms-area section-padding-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <div class="single-room-content">
+                    <div class="room-title">
+                        <h2>@Model.hotel_name</h2>
+                        <p>@Model.city - @Model.address</p>
+                        <p><strong>Price:</strong> @(Model.composite_price_breakdown?.gross_amount?.amount_rounded) @(Model.composite_price_breakdown?.gross_amount?.currency)</p>
+                    </div>                 
+
+                    <p class="mt-4">@Model.rooms?._1070287101?.description</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

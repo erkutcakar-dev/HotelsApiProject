@@ -1,0 +1,28 @@
+﻿@model IEnumerable<HotelsApiProject.Models.HotelSearchViewModel.Datum>
+@{
+    ViewData["Title"] = "HotelList";
+    Layout = "~/Views/Shared/_HotelLayout.cshtml";
+}
+
+<section class="rooms-area section-padding-100-0">
+    <div class="container">
+        <div class="row">
+            @foreach (var hotel in Model)
+            {
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-rooms-area">
+                        <div class="bg-thumbnail bg-img" style="background-image: url('@(hotel.photoUrls?.FirstOrDefault() ?? "~/img/bg-img/1.jpg")');"></div>
+                        <p class="price-from">From @(hotel.priceBreakdown?.grossPrice?.amountRounded ?? "N/A") @(hotel.currency)</p>
+                        <div class="rooms-text">
+                            <div class="line"></div>
+                            <h4>@hotel.name</h4>
+                            <p>@hotel.reviewScoreWord (@hotel.reviewScore) - @hotel.reviewCount Reviews</p>
+                        </div>
+                        <a href="@Url.Action("Detail", "Hotel", new { hotelId = hotel.id, checkinDate = ViewBag.CheckinDate, checkoutDate = ViewBag.CheckoutDate })" class="book-room-btn btn palatin-btn">Details</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
