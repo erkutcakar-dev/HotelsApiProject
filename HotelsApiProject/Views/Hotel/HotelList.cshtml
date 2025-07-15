@@ -54,7 +54,7 @@
                                 </p>
                             </div>
                             <!-- Book Room -->
-                            <a href="#" class="book-room-btn btn palatin-btn">İncele</a>
+                            <a href="@Url.Action("Detail", "Hotel", new { hotelId = hotel.id, checkinDate = ViewBag.CheckinDate, checkoutDate = ViewBag.CheckoutDate })" class="book-room-btn btn palatin-btn">İncele</a>
                         </div>
                     </div>
                 }
@@ -82,3 +82,71 @@
         background-color: #f8f9fa !important;
     }
 </style>
+<!-- Modal for Image Preview -->
+<div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content bg-transparent border-0">
+      <div class="modal-body p-0 text-center">
+        <img src="" id="modalImage" class="img-fluid rounded shadow" style="max-height:80vh; max-width:100%;" />
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(function() {
+    // Detayları Göster butonuna tıklanınca AJAX ile detayları çek
+    $('.show-details-btn').on('click', function() {
+        var hotelId = $(this).data('hotel-id');
+        var checkin = '@ViewBag.CheckinDate';
+        var checkout = '@ViewBag.CheckoutDate';
+        var detailsContainer = $('#hotel-details-' + hotelId);
+        if (detailsContainer.is(':visible')) {
+            detailsContainer.slideUp();
+            return;
+        }
+        // Diğer açık detayları kapat
+        $('.hotel-details-container').slideUp();
+        // AJAX ile detayları çek
+        $.get('/Hotel/GetHotelDetailsJson', { hotelId: hotelId, checkinDate: checkin, checkoutDate: checkout }, function(data) {
+            var html = renderHotelDetails(data);
+            detailsContainer.html(html).slideDown();
+        });
+    });
+    // Fotoğraf tıklanınca modalda büyüt
+    $(document).on('click', '.hotel-photo-thumb', function() {
+        var photoUrl = $(this).data('photo-url');
+        $('#modalImage').attr('src', photoUrl);
+        $('#photoModal').modal('show');
+    });
+    // Modal dışında tıklanınca modalı kapat
+    $('#photoModal').on('click', function(e) {
+        if ($(e.target).is('#modalImage')) return;
+        $('#photoModal').modal('hide');
+    });
+});
+// Detayları modern şekilde render eden fonksiyon
+function renderHotelDetails(data) {
+    var breakfast = data.breakfast_review_score ? (data.breakfast_review_score.review_score_word + ' (' + data.breakfast_review_score.review_score + ')') : 'Bilgi yok';
+    var facilities = (data.facilities_block && data.facilities_block.facilities) ? data.facilities_block.facilities.map(f => '<span class="badge badge-info mr-1 mb-1">' + f.name + '</span>').join(' ') : 'Bilgi yok';
+    var desc = (data.rooms && data.rooms._1070287101 && data.rooms._1070287101.description) ? data.rooms._1070287101.description : (data.hotel_name || '');
+    var photos = (data.rooms && data.rooms._1070287101 && data.rooms._1070287101.photos) ? data.rooms._1070287101.photos.map(p => '<img src="' + p.url_max300 + '" class="img-fluid rounded mr-2 mb-2 hotel-photo-thumb" style="width:100px; height:70px; object-fit:cover; cursor:pointer;" data-photo-url="' + p.url_original + '" />').join('') : '';
+    var location = (data.city ? data.city : '') + (data.address ? ', ' + data.address : '');
+    return `
+        <div class="card card-body shadow-sm">
+            <div class="row">
+                <div class="col-12 col-md-4 mb-2 mb-md-0">
+                    <div class="d-flex flex-wrap">${photos}</div>
+                </div>
+                <div class="col-12 col-md-8">
+                    <h5 class="mb-2">${data.hotel_name || ''}</h5>
+                    <p class="mb-1"><strong>Açıklama:</strong> ${desc}</p>
+                    <p class="mb-1"><strong>Konum:</strong> ${location}</p>
+                    <p class="mb-1"><strong>Kahvaltı:</strong> ${breakfast}</p>
+                    <p class="mb-1"><strong>Sosyal İmkanlar:</strong> ${facilities}</p>
+                </div>
+            </div>
+        </div>
+    `;
+}
+</script>

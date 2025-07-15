@@ -135,7 +135,7 @@
         public class Excluded_Amount
         {
             public string amount_unrounded { get; set; }
-            public int value { get; set; }
+            public decimal value { get; set; }
             public string currency { get; set; }
             public string amount_rounded { get; set; }
         }
@@ -143,14 +143,14 @@
         public class Gross_Amount_Per_Night
         {
             public string amount_unrounded { get; set; }
-            public int value { get; set; }
+            public decimal value { get; set; }
             public string currency { get; set; }
             public string amount_rounded { get; set; }
         }
 
         public class Included_Taxes_And_Charges_Amount
         {
-            public float value { get; set; }
+            public decimal value { get; set; }
             public string amount_unrounded { get; set; }
             public string amount_rounded { get; set; }
             public string currency { get; set; }
@@ -159,7 +159,7 @@
         public class All_Inclusive_Amount
         {
             public string amount_unrounded { get; set; }
-            public int value { get; set; }
+            public decimal value { get; set; }
             public string currency { get; set; }
             public string amount_rounded { get; set; }
         }
@@ -168,14 +168,14 @@
         {
             public string amount_rounded { get; set; }
             public string currency { get; set; }
-            public int value { get; set; }
+            public decimal value { get; set; }
             public string amount_unrounded { get; set; }
         }
 
         public class All_Inclusive_Amount_Hotel_Currency
         {
             public string amount_unrounded { get; set; }
-            public int value { get; set; }
+            public decimal value { get; set; }
             public string currency { get; set; }
             public string amount_rounded { get; set; }
         }
@@ -184,7 +184,7 @@
         {
             public string amount_rounded { get; set; }
             public string currency { get; set; }
-            public int value { get; set; }
+            public decimal value { get; set; }
             public string amount_unrounded { get; set; }
         }
 
@@ -193,7 +193,7 @@
             public string currency { get; set; }
             public string amount_rounded { get; set; }
             public string amount_unrounded { get; set; }
-            public float value { get; set; }
+            public decimal value { get; set; }
         }
 
         public class Charges_Details
@@ -306,12 +306,12 @@
 
         public class Breakfast_Review_Score
         {
-            public int rating { get; set; }
+            public decimal rating { get; set; }
             public string review_snippet { get; set; }
-            public int review_score { get; set; }
-            public int review_count { get; set; }
+            public decimal review_score { get; set; }
+            public decimal review_count { get; set; }
             public string review_score_word { get; set; }
-            public int review_number { get; set; }
+            public decimal review_number { get; set; }
         }
 
         public class Min_Room_Distribution
@@ -644,13 +644,13 @@
 
         public class Room_Recommendation
         {
-            public int total_extra_bed_price { get; set; }
-            public int adults { get; set; }
-            public int total_extra_bed_price_in_hotel_currency { get; set; }
-            public int babies { get; set; }
+            public decimal total_extra_bed_price { get; set; }
+            public decimal adults { get; set; }
+            public decimal total_extra_bed_price_in_hotel_currency { get; set; }
+            public decimal babies { get; set; }
             public string block_id { get; set; }
-            public int children { get; set; }
-            public int number_of_extra_beds { get; set; }
+            public decimal children { get; set; }
+            public decimal number_of_extra_beds { get; set; }
         }
 
         public class Block
@@ -751,14 +751,14 @@
         {
             public string amount_rounded { get; set; }
             public string currency { get; set; }
-            public int value { get; set; }
+            public decimal value { get; set; }
             public string amount_unrounded { get; set; }
         }
 
         public class Included_Taxes_And_Charges_Amount1
         {
             public string amount_unrounded { get; set; }
-            public float value { get; set; }
+            public decimal value { get; set; }
             public string currency { get; set; }
             public string amount_rounded { get; set; }
         }
@@ -768,13 +768,13 @@
             public string currency { get; set; }
             public string amount_rounded { get; set; }
             public string amount_unrounded { get; set; }
-            public int value { get; set; }
+            public decimal value { get; set; }
         }
 
         public class All_Inclusive_Amount_Hotel_Currency1
         {
             public string amount_unrounded { get; set; }
-            public int value { get; set; }
+            public decimal value { get; set; }
             public string currency { get; set; }
             public string amount_rounded { get; set; }
         }
@@ -783,7 +783,7 @@
         {
             public string amount_rounded { get; set; }
             public string currency { get; set; }
-            public int value { get; set; }
+            public decimal value { get; set; }
             public string amount_unrounded { get; set; }
         }
 
@@ -792,7 +792,7 @@
             public string currency { get; set; }
             public string amount_rounded { get; set; }
             public string amount_unrounded { get; set; }
-            public int value { get; set; }
+            public decimal value { get; set; }
         }
 
         public class Charges_Details1
@@ -810,7 +810,7 @@
 
         public class Net_Amount1
         {
-            public float value { get; set; }
+            public decimal value { get; set; }
             public string amount_unrounded { get; set; }
             public string amount_rounded { get; set; }
             public string currency { get; set; }
@@ -819,7 +819,7 @@
         public class Gross_Amount1
         {
             public string amount_unrounded { get; set; }
-            public int value { get; set; }
+            public decimal value { get; set; }
             public string currency { get; set; }
             public string amount_rounded { get; set; }
         }

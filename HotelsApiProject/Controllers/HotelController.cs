@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using HotelsApiProject.Models;
+using static HotelsApiProject.Models.HotelDetailViewModel;
 
 namespace HotelsApiProject.Controllers
 {
@@ -32,52 +33,40 @@ namespace HotelsApiProject.Controllers
             ViewBag.CheckinDate = apiCheckin;
             ViewBag.CheckoutDate = apiCheckout;
 
-            // Sadece arama sonucunda gelen küçük fotoğrafı kullan
             var highResPhotos = new Dictionary<int, string>();
             foreach (var hotel in searchResult.data)
             {
-                string photoUrl = null;
-                if (hotel.photoUrls != null && hotel.photoUrls.Length > 0)
+                var photos = await GetHotelPhotos(hotel.id.ToString());
+                if (photos != null && photos.Count > 0)
                 {
-                    photoUrl = hotel.photoUrls[0];
+                    hotel.CoverImageURL = photos.First().ImageUrl;
                 }
-                if (string.IsNullOrEmpty(photoUrl))
+                else if (hotel.photoUrls != null && hotel.photoUrls.Length > 0)
                 {
-                    photoUrl = "/palatin-gh-pages/img/bg-img/1.jpg";
+                    hotel.CoverImageURL = hotel.photoUrls[0]; // yedek: düşük kalite
                 }
-                highResPhotos[hotel.id] = photoUrl;
+                highResPhotos[hotel.id] = hotel.CoverImageURL;
             }
             ViewBag.HighResPhotos = highResPhotos;
 
             return View("HotelList", searchResult.data); // Model: HotelSearchViewModel.Datum[]
         }
 
-        public async Task<IActionResult> Detail(int hotelId, string checkinDate, string checkoutDate)
+
+        //public async Task<IActionResult> Detail(int hotelId, string checkinDate, string checkoutDate)
+        //{
+        //    var detail = await GetHotelDetail(hotelId, checkinDate, checkoutDate);
+        //    var photos = await GetHotelPhotos(hotelId); // List<string>
+        //    ViewBag.Photos = photos;
+        //    return View("HotelDetail", detail.data); // Model: HotelDetailViewModel.Data
+        //}
+
+        // AJAX ile otel detayını JSON olarak dönen action
+        [HttpGet]
+        public async Task<IActionResult> GetHotelDetailsJson(int hotelId, string checkinDate, string checkoutDate)
         {
             var detail = await GetHotelDetail(hotelId, checkinDate, checkoutDate);
-            var photos = await GetHotelPhotos(hotelId);
-            var processedPhotos = new List<string>();
-            try
-            {
-                var photoData = photos?.data?.data?.GetType().GetProperty($"_{hotelId}")?.GetValue(photos.data.data, null) as object[][];
-                if (photoData != null)
-                {
-                    foreach (var firstItem in photoData)
-                    {
-                        if (firstItem.Length > 4 && firstItem[4] is object[] urlArray && urlArray.Length > 31)
-                        {
-                            var url = urlArray[31]?.ToString();
-                            if (!string.IsNullOrEmpty(url))
-                            {
-                                processedPhotos.Add(photos.data.url_prefix + url);
-                            }
-                        }
-                    }
-                }
-            }
-            catch { }
-            ViewBag.Photos = processedPhotos;
-            return View("HotelDetail", detail.data); // Model: HotelDetailViewModel.Data
+            return Json(detail.data); // Sadece detay modelini JSON olarak döner
         }
 
         // ---- RapidAPI çağrıları ----
@@ -143,7 +132,7 @@ namespace HotelsApiProject.Controllers
             return JsonConvert.DeserializeObject<HotelDetailViewModel.Rootobject>(body);
         }
 
-        private async Task<HotelPhotosViewModel.Rootobject> GetHotelPhotos(int hotelId)
+        public async Task<List<HotelPhotosViewModel>> GetHotelPhotos(string hotelId)
         {
             using var client = new HttpClient();
             var request = new HttpRequestMessage
@@ -151,16 +140,43 @@ namespace HotelsApiProject.Controllers
                 Method = HttpMethod.Get,
                 RequestUri = new Uri($"https://{APIHOST}/stays/get-photos?hotelId={hotelId}"),
                 Headers =
-                {
-                    { "x-rapidapi-key", APIKEY },
-                    { "x-rapidapi-host", APIHOST }
-                }
+          {
+      { "x-rapidapi-key", APIKEY },
+      { "x-rapidapi-host", APIHOST },
+          },
             };
 
-            var response = await client.SendAsync(request);
+            using var response = await client.SendAsync(request);
             response.EnsureSuccessStatusCode();
-            var body = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<HotelPhotosViewModel.Rootobject>(body);
+            var body = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            var data = JsonConvert.DeserializeObject<dynamic>(body);
+
+            var photos = new List<HotelPhotosViewModel>();
+            try
+            {
+                var photoData = data?.data?.data?[hotelId];
+                if (photoData != null && photoData.Count > 0)
+                {
+                    var firstItem = photoData[0];
+                    var fourthIndex = firstItem[4];
+                    var photoUrl = fourthIndex[31]?.ToString();
+
+                    if (!string.IsNullOrEmpty(photoUrl))
+                    {
+                        var fullPhotoUrl = $"{data?.data?.url_prefix}{photoUrl}";
+
+                        photos.Add(new HotelPhotosViewModel
+                        {
+                            ImageUrl = fullPhotoUrl
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Fotoğraf alma işlemi sırasında hata oluştu: {ex.Message}");
+            }
+            return photos;
         }
     }
 }

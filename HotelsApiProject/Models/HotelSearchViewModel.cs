@@ -51,6 +51,7 @@
             public bool isPreferredPlus { get; set; }
             public bool isPreferred { get; set; }
             public string image_url { get; set; }
+            public string CoverImageURL { get; set; }
         }
 
         public class Checkin
