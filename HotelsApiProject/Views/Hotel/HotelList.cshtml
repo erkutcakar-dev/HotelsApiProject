@@ -40,7 +40,7 @@
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="single-rooms-area wow fadeInUp" data-wow-delay="100ms">
                             <!-- Thumbnail -->
-                            <div class="bg-thumbnail bg-img" style="background-image: url('@photoUrl'); height: 250px; background-size: cover; background-position: center;"></div>
+                            <div class="bg-thumbnail bg-img" style="background-image: url('@photoUrl'); height: 280px; background-size: cover; background-position: center; background-repeat: no-repeat; background-color: #f8f9fa;"></div>
                             <!-- Price -->
                             <p class="price-from">Gecelik @(hotel.priceBreakdown?.grossPrice?.amountRounded ?? "N/A") @(hotel.currency)</p>
                             <!-- Rooms Text -->
@@ -72,5 +72,13 @@
         box-shadow: 0 8px 32px rgba(0,0,0,0.18);
         transform: translateY(-4px) scale(1.02);
         transition: box-shadow 0.3s, transform 0.3s;
+    }
+    
+    /* Sadece arama sonuçlarındaki fotoğraflar için kalite artırma */
+    .rooms-area .bg-thumbnail.bg-img {
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        background-color: #f8f9fa !important;
     }
 </style>

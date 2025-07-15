@@ -50,6 +50,7 @@
             public string countryCode { get; set; }
             public bool isPreferredPlus { get; set; }
             public bool isPreferred { get; set; }
+            public string image_url { get; set; }
         }
 
         public class Checkin

@@ -32,23 +32,20 @@ namespace HotelsApiProject.Controllers
             ViewBag.CheckinDate = apiCheckin;
             ViewBag.CheckoutDate = apiCheckout;
 
-            // Her otel için yüksek çözünürlüklü fotoğrafı url_prefix ile birleştirerek seç
+            // Sadece arama sonucunda gelen küçük fotoğrafı kullan
             var highResPhotos = new Dictionary<int, string>();
-            string urlPrefix = null;
-            if (searchResult?.data != null && searchResult.data.Length > 0)
-            {
-                // url_prefix'i ilk otelden al (tüm otellerde aynı olur)
-                urlPrefix = searchResult.data[0].photoUrls != null && searchResult.data[0].photoUrls.Length > 0 && searchResult.data[0].photoUrls[0].StartsWith("http")
-                    ? "" : "/palatin-gh-pages/"; // Eğer zaten tam url ise prefix ekleme
-            }
             foreach (var hotel in searchResult.data)
             {
-                string highResPhoto = null;
-                if (hotel.photoUrls != null && hotel.photoUrls.Length > 31 && !string.IsNullOrEmpty(hotel.photoUrls[31]))
-                    highResPhoto = urlPrefix + hotel.photoUrls[31];
-                else if (hotel.photoUrls != null && hotel.photoUrls.Length > 0)
-                    highResPhoto = urlPrefix + hotel.photoUrls[0];
-                highResPhotos[hotel.id] = highResPhoto;
+                string photoUrl = null;
+                if (hotel.photoUrls != null && hotel.photoUrls.Length > 0)
+                {
+                    photoUrl = hotel.photoUrls[0];
+                }
+                if (string.IsNullOrEmpty(photoUrl))
+                {
+                    photoUrl = "/palatin-gh-pages/img/bg-img/1.jpg";
+                }
+                highResPhotos[hotel.id] = photoUrl;
             }
             ViewBag.HighResPhotos = highResPhotos;
 
@@ -59,7 +56,27 @@ namespace HotelsApiProject.Controllers
         {
             var detail = await GetHotelDetail(hotelId, checkinDate, checkoutDate);
             var photos = await GetHotelPhotos(hotelId);
-            ViewBag.Photos = photos?.data?.data?._10702871; // Corrected property access
+            var processedPhotos = new List<string>();
+            try
+            {
+                var photoData = photos?.data?.data?.GetType().GetProperty($"_{hotelId}")?.GetValue(photos.data.data, null) as object[][];
+                if (photoData != null)
+                {
+                    foreach (var firstItem in photoData)
+                    {
+                        if (firstItem.Length > 4 && firstItem[4] is object[] urlArray && urlArray.Length > 31)
+                        {
+                            var url = urlArray[31]?.ToString();
+                            if (!string.IsNullOrEmpty(url))
+                            {
+                                processedPhotos.Add(photos.data.url_prefix + url);
+                            }
+                        }
+                    }
+                }
+            }
+            catch { }
+            ViewBag.Photos = processedPhotos;
             return View("HotelDetail", detail.data); // Model: HotelDetailViewModel.Data
         }
 
@@ -147,3 +164,4 @@ namespace HotelsApiProject.Controllers
         }
     }
 }
+
