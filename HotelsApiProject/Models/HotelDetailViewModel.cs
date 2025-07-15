@@ -12,106 +12,13 @@
 
         public class Data
         {
-            public int genius_rates_can_be_available { get; set; }
-            public string cc1 { get; set; }
-            public int is_closed { get; set; }
-            public float longitude { get; set; }
-            public string city { get; set; }
-            public string hotel_name_trans { get; set; }
-            public int total_blocks { get; set; }
-            public object is_city_center { get; set; }
-            public Composite_Price_Breakdown composite_price_breakdown { get; set; }
-            public string departure_date { get; set; }
-            public object[] tax_exceptions { get; set; }
-            public Languages_Spoken languages_spoken { get; set; }
-            public int is_vp2_enrolled { get; set; }
-            public Aggregated_Data aggregated_data { get; set; }
-            public int seen_cc_app_hp_missing_info { get; set; }
-            public string city_name_en { get; set; }
-            public float latitude { get; set; }
-            public string has_theme_park_benefits { get; set; }
-            public string default_language { get; set; }
-            public Room_Recommendation[] room_recommendation { get; set; }
-            public string[] spoken_languages { get; set; }
-            public string address { get; set; }
-            public string[] family_facilities { get; set; }
-            public Only_X_Left only_x_left { get; set; }
-            public Property_Policy_Display_Details property_policy_display_details { get; set; }
-            public int b_legal_use_neutral_color_for_persuasion_legal { get; set; }
-            public int is_preferred_plus { get; set; }
-            public int ufi { get; set; }
-            public Last_Reservation last_reservation { get; set; }
-            public Block[] block { get; set; }
-            public int is_crimea { get; set; }
-            public Breakfast_Review_Score breakfast_review_score { get; set; }
-            public int district_id { get; set; }
-            public int block_count { get; set; }
-            public string arrival_date { get; set; }
-            public string wl_dest_id { get; set; }
-            public int is_eligible_for_horizontal_scroll { get; set; }
-            public int available_rooms { get; set; }
-            public Min_Room_Distribution min_room_distribution { get; set; }
-            public string urgency_room_string { get; set; }
-            public object[] districts { get; set; }
-            public string recommended_block_title { get; set; }
-            public string hotel_facilities { get; set; }
-            public string zip { get; set; }
             public string hotel_name { get; set; }
-            public string default_wishlist_name { get; set; }
-            public int duplicate_rates_removed { get; set; }
-            public object is_exclusive { get; set; }
-            public int cant_book { get; set; }
-            public Wifi_Review_Score wifi_review_score { get; set; }
-            public int max_rooms_in_reservation { get; set; }
-            public string address_trans { get; set; }
-            public string district { get; set; }
+            public string city { get; set; }
+            public string address { get; set; }
+            public Composite_Price_Breakdown composite_price_breakdown { get; set; }
+            public Breakfast_Review_Score breakfast_review_score { get; set; }
             public Rooms rooms { get; set; }
-            public int is_family_friendly { get; set; }
-            public Property_Highlight_Strip_Saba property_highlight_strip_saba { get; set; }
-            public string timezone { get; set; }
-            public int b_sca_flow_property_user_ip { get; set; }
-            public string payment_product { get; set; }
-            public B_Max_Los_Data b_max_los_data { get; set; }
-            public string cvc_required { get; set; }
-            public int use_new_bui_icon_highlight { get; set; }
-            public int is_tpi_exclusive_property { get; set; }
-            public string countrycode { get; set; }
             public Facilities_Block facilities_block { get; set; }
-            public int qualifies_for_no_cc_reservation { get; set; }
-            public int check_only_x_left { get; set; }
-            public string cc_required { get; set; }
-            public int address_required { get; set; }
-            public string rare_find_state { get; set; }
-            public int soldout { get; set; }
-            public Top_Ufi_Benefits[] top_ufi_benefits { get; set; }
-            public string city_in_trans { get; set; }
-            public string hotel_address_line { get; set; }
-            public int is_cpv2_property { get; set; }
-            public Booking_Home booking_home { get; set; }
-            public int is_hotel_ctrip { get; set; }
-            public string city_trans { get; set; }
-            public int class_is_estimated { get; set; }
-            public string plq_sensitivity { get; set; }
-            public int hotel_include_breakfast { get; set; }
-            public string average_room_size_for_ufi_m2 { get; set; }
-            public float distance_to_cc { get; set; }
-            public int hotel_id { get; set; }
-            public Property_Highlight_Strip[] property_highlight_strip { get; set; }
-            public int accommodation_type { get; set; }
-            public int seen_cc_app_rp_missing_fac { get; set; }
-            public Payment_Detail payment_detail { get; set; }
-            public Hotel_Text hotel_text { get; set; }
-            public string url { get; set; }
-            public string country_trans { get; set; }
-            public int is_cash_accepted_check_enabled { get; set; }
-            public string accommodation_type_name { get; set; }
-            public object[] preferences { get; set; }
-            public int b_blackout_android_prepayment_copy { get; set; }
-            public int review_nr { get; set; }
-            public string generated_property_title { get; set; }
-            public string currency_code { get; set; }
-            public int is_preferred { get; set; }
-            public int mobile_discount_percentage { get; set; }
         }
 
         public class Composite_Price_Breakdown
@@ -805,7 +712,7 @@
         public class Amount1
         {
             public string currency { get; set; }
-            public int value { get; set; }
+            public decimal value { get; set; }
         }
 
         public class Net_Amount1
@@ -884,37 +791,37 @@
         public class Stage
         {
             public string stage_fee_pretty { get; set; }
-            public int current_stage { get; set; }
+            public decimal current_stage { get; set; }
             public string limit_timezone { get; set; }
-            public int fee_rounded { get; set; }
+            public decimal fee_rounded { get; set; }
             public string amount_pretty { get; set; }
-            public int effective_number { get; set; }
+            public decimal effective_number { get; set; }
             public string u_stage_fee { get; set; }
             public string u_fee_remaining { get; set; }
             public string limit_from_date { get; set; }
             public string u_fee { get; set; }
             public string limit_until_date { get; set; }
             public string limit_until_time { get; set; }
-            public int fee_remaining { get; set; }
+            public decimal fee_remaining { get; set; }
             public string limit_until { get; set; }
-            public int is_free { get; set; }
-            public int stage_fee { get; set; }
+            public decimal is_free { get; set; }
+            public decimal stage_fee { get; set; }
             public string fee_pretty { get; set; }
             public string amount { get; set; }
-            public int b_number { get; set; }
+            public decimal b_number { get; set; }
             public string u_fee_pretty { get; set; }
             public string fee_remaining_pretty { get; set; }
-            public int fee { get; set; }
+            public decimal fee { get; set; }
             public string text { get; set; }
             public string u_stage_fee_pretty { get; set; }
             public string limit_from_time { get; set; }
             public string b_state { get; set; }
             public string u_fee_remaining_pretty { get; set; }
             public string limit_from_raw { get; set; }
-            public int is_effective { get; set; }
+            public decimal is_effective { get; set; }
             public string limit_until_raw { get; set; }
             public string limit_from { get; set; }
-            public int after_checkin { get; set; }
+            public decimal after_checkin { get; set; }
         }
 
         public class Info
@@ -924,10 +831,10 @@
             public string time_before_midnight { get; set; }
             public string timezone_offset { get; set; }
             public string time { get; set; }
-            public int prepayment_at_booktime { get; set; }
+            public int? prepayment_at_booktime { get; set; }
             public string date_before { get; set; }
-            public int is_midnight { get; set; }
-            public int refundable { get; set; }
+            public int? is_midnight { get; set; }
+            public int? refundable { get; set; }
         }
 
         public class Cancellation
@@ -948,9 +855,9 @@
             public DateTime refundable_date { get; set; }
             public DateTime refundable_date_midnight { get; set; }
             public string date_raw { get; set; }
-            public int is_midnight { get; set; }
+            public int? is_midnight { get; set; }
             public string time { get; set; }
-            public int refundable { get; set; }
+            public int? refundable { get; set; }
             public string timezone { get; set; }
             public string date { get; set; }
             public string date_before_raw { get; set; }
@@ -973,13 +880,13 @@
             public string b_state { get; set; }
             public string u_fee_remaining_pretty { get; set; }
             public string limit_from_raw { get; set; }
-            public int is_effective { get; set; }
+            public decimal is_effective { get; set; }
             public string limit_until_raw { get; set; }
             public string stage_translation { get; set; }
             public string limit_from { get; set; }
             public string date_until { get; set; }
-            public int b_number { get; set; }
-            public int fee { get; set; }
+            public decimal b_number { get; set; }
+            public decimal fee { get; set; }
             public string u_fee_pretty { get; set; }
             public string fee_remaining_pretty { get; set; }
             public string text { get; set; }
@@ -988,23 +895,18 @@
             public string limit_from_date { get; set; }
             public string u_fee { get; set; }
             public string limit_until_date { get; set; }
-            public int fee_remaining { get; set; }
+            public decimal fee_remaining { get; set; }
             public string limit_until { get; set; }
             public string limit_until_time { get; set; }
-            public int is_free { get; set; }
+            public decimal is_free { get; set; }
+            public decimal stage_fee { get; set; }
             public string fee_pretty { get; set; }
-            public int stage_fee { get; set; }
-            public string stage_fee_pretty { get; set; }
-            public int current_stage { get; set; }
-            public string limit_timezone { get; set; }
-            public int fee_rounded { get; set; }
-            public string u_stage_fee { get; set; }
-            public int effective_number { get; set; }
-            public string u_fee_remaining { get; set; }
             public string amount { get; set; }
-            public string amount_pretty { get; set; }
-            public string date_from { get; set; }
-            public int is_noshow { get; set; }
+            public decimal fee_rounded { get; set; }
+            public string u_stage_fee { get; set; }
+            public decimal effective_number { get; set; }
+            public string u_fee_remaining { get; set; }          
+            public decimal after_checkin { get; set; }
         }
 
         public class Detail_Mealplan

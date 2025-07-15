@@ -53,13 +53,15 @@ namespace HotelsApiProject.Controllers
         }
 
 
-        //public async Task<IActionResult> Detail(int hotelId, string checkinDate, string checkoutDate)
-        //{
-        //    var detail = await GetHotelDetail(hotelId, checkinDate, checkoutDate);
-        //    var photos = await GetHotelPhotos(hotelId); // List<string>
-        //    ViewBag.Photos = photos;
-        //    return View("HotelDetail", detail.data); // Model: HotelDetailViewModel.Data
-        //}
+        public async Task<IActionResult> Detail(int hotelId, string checkinDate, string checkoutDate)
+        {
+            var detail = await GetHotelDetail(hotelId, checkinDate, checkoutDate);
+            var photos = await GetHotelPhotos(hotelId.ToString()); // List<HotelPhotosViewModel>
+            // Fotoğraf url'lerini string listesine çevir
+            var photoUrls = photos?.Select(p => p.ImageUrl).ToList() ?? new List<string>();
+            ViewBag.Photos = photoUrls;
+            return View("HotelDetail", detail.data); // Model: HotelDetailViewModel.Data
+        }
 
         // AJAX ile otel detayını JSON olarak dönen action
         [HttpGet]

@@ -27,7 +27,7 @@
             public Checkin checkin { get; set; }
             public int reviewCount { get; set; }
             public int position { get; set; }
-            public int propertyClass { get; set; }
+            public decimal propertyClass { get; set; }
             public Pricebreakdown priceBreakdown { get; set; }
             public int rankingPosition { get; set; }
             public string wishlistName { get; set; }
