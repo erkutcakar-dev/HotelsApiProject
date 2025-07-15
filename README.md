@@ -147,3 +147,36 @@ Bu proje MIT lisansı ile lisanslanacaktır. (Lisans dosyasını eklemeyi unutma
 ## 🙌 Teşekkürler
 
 Booking.com API ile gerçek zamanlı otel arama ve detay gösterimi için bu örnek projeyi inceleyen herkese teşekkürler! Geri bildirimleriniz bizim için çok değerli. 
+
+
+
+
+İşte Proje Fotoğrafları. 
+
+<img width="1920" height="1032" alt="Ekran görüntüsü 2025-07-15 174259" src="https://github.com/user-attachments/assets/d286d1d6-804a-418f-a9a7-0cdc17168606" />
+🏨
+<img width="1920" height="1032" alt="Ekran görüntüsü 2025-07-15 174325" src="https://github.com/user-attachments/assets/fb242344-e170-4c46-86c5-b5653c4c714b" />
+🏨
+<img width="1920" height="1032" alt="Ekran görüntüsü 2025-07-15 174350" src="https://github.com/user-attachments/assets/dfdedcda-f4d8-40ea-9b40-1ce843e89446" />
+
+🏨
+<img width="1920" height="1032" alt="Ekran görüntüsü 2025-07-15 174458" src="https://github.com/user-attachments/assets/db454ca1-88e1-4138-aae7-619038694c4d" />
+
+
+🏨
+<img width="1920" height="1032" alt="Ekran görüntüsü 2025-07-15 174510" src="https://github.com/user-attachments/assets/87f013b5-5d47-4188-8a64-d0ec3feb8111" />
+
+🏨
+<img width="686" height="455" alt="Ekran görüntüsü 2025-07-15 174530" src="https://github.com/user-attachments/assets/6af9d090-59f0-42d0-a9ee-d3d0d9a85f7d" />
+🏨
+<img width="207" height="110" alt="Ekran görüntüsü 2025-07-15 174539" src="https://github.com/user-attachments/assets/93344cd9-219b-4e22-b2b3-d7ab62166295" />
+
+🏨
+<img width="1899" height="898" alt="Ekran görüntüsü 2025-07-15 174546" src="https://github.com/user-attachments/assets/e74a7141-3bff-45da-baa7-8215d7fd2b0e" />
+
+🏨
+<img width="1906" height="896" alt="Ekran görüntüsü 2025-07-15 174700" src="https://github.com/user-attachments/assets/358d6b82-7c60-407e-9a1e-d8614296b420" />
+
+🏨
+
+<img width="1907" height="896" alt="Ekran görüntüsü 2025-07-15 174642" src="https://github.com/user-attachments/assets/0669acdd-72fb-4908-9de1-3033342ccb8b" />
