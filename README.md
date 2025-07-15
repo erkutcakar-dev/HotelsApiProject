@@ -138,12 +138,6 @@ HotelsApiProject/
 
 ---
 
-## 📄 Lisans
-
-Bu proje MIT lisansı ile lisanslanacaktır. (Lisans dosyasını eklemeyi unutmayın.)
-
----
-
 ## 🙌 Teşekkürler
 
 Booking.com API ile gerçek zamanlı otel arama ve detay gösterimi için bu örnek projeyi inceleyen herkese teşekkürler! Geri bildirimleriniz bizim için çok değerli. 
