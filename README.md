@@ -92,6 +92,44 @@ Kullanıcı arama formunda şu bilgileri girer:
 
 ---
 
+## 🗂️ Proje Klasör Yapısı
+
+```text
+HotelsApiProject/
+├── HotelsApiProject.sln
+└── HotelsApiProject/
+    ├── appsettings.json
+    ├── appsettings.Development.json
+    ├── Controllers/
+    │   ├── HomeController.cs
+    │   └── HotelController.cs
+    ├── Models/
+    │   ├── HotelDetailViewModel.cs
+    │   ├── HotelSearchViewModel.cs
+    │   ├── HotelPhotosViewModel.cs
+    │   └── LocationViewModel.cs
+    ├── Views/
+    │   ├── Home/
+    │   │   ├── Index.cshtml
+    │   │   └── Privacy.cshtml
+    │   ├── Hotel/
+    │   │   ├── HotelDetail.cshtml
+    │   │   ├── HotelList.cshtml
+    │   │   └── SearchForm.cshtml
+    │   └── Shared/
+    │       ├── _HotelLayout.cshtml
+    │       ├── _Layout.cshtml
+    │       └── Components/
+    ├── wwwroot/
+    │   ├── css/
+    │   ├── js/
+    │   └── palatin-gh-pages/ (tema ve statik dosyalar)
+    ├── Program.cs
+    └── HotelsApiProject.csproj
+```
+
+---
+
 ## 🤝 Katkı ve Geri Bildirim
 
 - Pull request ve issue açarak katkıda bulunabilirsiniz.
