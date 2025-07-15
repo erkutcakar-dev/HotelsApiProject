@@ -152,31 +152,25 @@ Booking.com API ile gerçek zamanlı otel arama ve detay gösterimi için bu ör
 
 
 İşte Proje Fotoğrafları. 
-
-<img width="1920" height="1032" alt="Ekran görüntüsü 2025-07-15 174259" src="https://github.com/user-attachments/assets/d286d1d6-804a-418f-a9a7-0cdc17168606" />
 🏨
-<img width="1920" height="1032" alt="Ekran görüntüsü 2025-07-15 174325" src="https://github.com/user-attachments/assets/fb242344-e170-4c46-86c5-b5653c4c714b" />
+<img width="719" height="906" alt="9" src="https://github.com/user-attachments/assets/f392359a-6911-4257-85ad-1f48e379bec6" />
 🏨
-<img width="1920" height="1032" alt="Ekran görüntüsü 2025-07-15 174350" src="https://github.com/user-attachments/assets/dfdedcda-f4d8-40ea-9b40-1ce843e89446" />
-
+<img width="1906" height="896" alt="8" src="https://github.com/user-attachments/assets/319c081c-92ca-4cc0-ab0d-d12139d4be09" />
 🏨
-<img width="1920" height="1032" alt="Ekran görüntüsü 2025-07-15 174458" src="https://github.com/user-attachments/assets/db454ca1-88e1-4138-aae7-619038694c4d" />
-
-
+<img width="1907" height="896" alt="7" src="https://github.com/user-attachments/assets/67aab083-1534-4bcb-bb3d-f564987c028e" />
 🏨
-<img width="1920" height="1032" alt="Ekran görüntüsü 2025-07-15 174510" src="https://github.com/user-attachments/assets/87f013b5-5d47-4188-8a64-d0ec3feb8111" />
-
+<img width="686" height="455" alt="10" src="https://github.com/user-attachments/assets/0dd1976c-5519-4247-bf7e-6c35a2960712" />
 🏨
-<img width="686" height="455" alt="Ekran görüntüsü 2025-07-15 174530" src="https://github.com/user-attachments/assets/6af9d090-59f0-42d0-a9ee-d3d0d9a85f7d" />
+<img width="1899" height="898" alt="6" src="https://github.com/user-attachments/assets/e2b6faa5-c9d0-4a0b-95c5-294badb9f206" />
 🏨
-<img width="207" height="110" alt="Ekran görüntüsü 2025-07-15 174539" src="https://github.com/user-attachments/assets/93344cd9-219b-4e22-b2b3-d7ab62166295" />
-
+<img width="1920" height="911" alt="5" src="https://github.com/user-attachments/assets/9d356a26-d649-483d-bc0d-34b352b1503b" />
 🏨
-<img width="1899" height="898" alt="Ekran görüntüsü 2025-07-15 174546" src="https://github.com/user-attachments/assets/e74a7141-3bff-45da-baa7-8215d7fd2b0e" />
-
+<img width="1920" height="908" alt="4" src="https://github.com/user-attachments/assets/739064fa-227e-4c79-8225-0f5808522d66" />
 🏨
-<img width="1906" height="896" alt="Ekran görüntüsü 2025-07-15 174700" src="https://github.com/user-attachments/assets/358d6b82-7c60-407e-9a1e-d8614296b420" />
-
+<img width="1920" height="908" alt="3" src="https://github.com/user-attachments/assets/5a54609d-9c97-4b01-8ed2-f4ba25b8fb0e" />
 🏨
+<img width="1920" height="906" alt="2" src="https://github.com/user-attachments/assets/0db7e316-b39c-4f20-a57b-3144a1a200df" />
+🏨
+<img width="1920" height="911" alt="1" src="https://github.com/user-attachments/assets/036f9045-63a8-478a-90b6-d2954e4278f0" />
 
-<img width="1907" height="896" alt="Ekran görüntüsü 2025-07-15 174642" src="https://github.com/user-attachments/assets/0669acdd-72fb-4908-9de1-3033342ccb8b" />
+
